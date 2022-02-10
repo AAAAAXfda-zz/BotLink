@@ -1,0 +1,29 @@
+version: v1beta1
+
+name: buf.build/batazor/shortlink
+
+deps:
+  - buf.build/beta/googleapis
+  - buf.build/srikrsna/protoc-gen-gotag
+
+build:
+  roots:
+    - internal/services/api/application
+    - internal/services/proxy/src/proto
+    - internal/services/billing
+    - internal/services/eventsourcing
+    - internal/services/link
+    - internal/services/metadata
+    - internal/services/newsletter/src
+    - internal/pkg
+
+lint:
+  use:
+    - DEFAULT # the current strictest possible
+  rpc_allow_google_protobuf_empty_requests: true
+  rpc_allow_google_protobuf_empty_responses: true
+
+breaking:
+  use:
+    - WIRE_JSON
+
